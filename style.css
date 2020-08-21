@@ -53,6 +53,12 @@ li {
   max-width: 600px;
   margin: 60px;
 }
+.container-body {
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+  padding: 30px;
+}
 .weather-app-body {
   display: block;
   margin: 0 auto;
