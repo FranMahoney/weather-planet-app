@@ -49,6 +49,10 @@ li {
   margin-top: 2px;
   margin-bottom: 5px;
 }
+.source-code-link {
+  display: block;
+  margin: 0px;
+}
 .weather-app-wrapper {
   max-width: 600px;
   margin: 60px;
