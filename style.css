@@ -1,3 +1,79 @@
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+h2 {
+  font-size: 35px;
+}
+h3 {
+  font-size: 16px;
+}
 h1 {
-  color: blue;
+  font-size: 85px;
+}
+p {
+  font-size: 16px;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+.temperature {
+  font-size: 85px;
+}
+.main-icon {
+  width: 180px;
+  margin: 0 auto;
+  padding: 0px;
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 40px;
+}
+.card-body {
+  padding: 2px;
+}
+.card-text {
+  font-size: 11px;
+  margin: 2px;
+}
+.col-sm-2 {
+  padding: 0px 5px;
+}
+.row {
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+.weather-app-wrapper {
+  max-width: 600px;
+  margin: 60px;
+}
+.weather-app-body {
+  display: block;
+  margin: 0 auto;
+  width: 500px;
+  padding: 30px;
+  border: 1px solid #dadde1;
+  border-radius: 50px;
+}
+.temp-description {
+  margin-top: 5px;
+  line-height: 32px;
+}
+
+.sunrise-icon,
+.sunset-icon {
+  width: 60px;
+}
+.hourly-temp {
+  margin-top: 7px;
+}
+.weekly-temp-icon {
+  width: 50px;
+  margin: 0 0 2px 0;
 }
