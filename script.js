@@ -1,4 +1,5 @@
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let currentDate = date.getDate();
   let year = date.getFullYear();
 
@@ -52,6 +53,18 @@ function displayWeatherConditions(response) {
   document.querySelector("#wind").innerHTML = response.data.wind.speed;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+  document.querySelector("#date").innerHTML = formatDate(
+    response.data.dt * 1000
+  );
+  document
+    .querySelector("#icon")
+    .setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    );
+  document
+    .querySelector("#icon")
+    .setAttribute("alt", response.data.weather[0].main);
 }
 
 function searchLocation(position) {
@@ -66,13 +79,13 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayWeatherConditions);
 }
 
-function displayBackgroundImage(response) {
-  document.querySelection("#body-background");
+function displayBackgroundImage(natural) {
+  document.querySelector("#body-background");
 }
 
-function searchImageLocation(natural) {
+function searchImageLocation() {
   let apiKey = "BHQKLBephGK3GnkK56FsQZ6TpKgMdTtrYCw0wUVq";
-  let apiUrl = `https://api.nasa.gov/EPIC/api/natural/date/2019-05-30?api_key=${apiKey}`;
+  let apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayBackgroundImage);
 }
@@ -81,7 +94,6 @@ function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search-text-input").value;
   searchCity(city);
-  searchImageLocation(natural);
 }
 
 function getLocation(event) {
@@ -104,11 +116,6 @@ function convertToCelsius(event) {
   temperature = Number(temperature);
   temperatureElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
 }
-
-let dateElement = document.querySelector("#date");
-let currentTime = new Date();
-
-dateElement.innerHTML = formatDate(currentTime);
 
 let searchNewCity = document.querySelector("#search-city");
 searchNewCity.addEventListener("submit", handleSubmit);
