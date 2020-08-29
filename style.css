@@ -71,6 +71,16 @@ li {
   border: 1px solid #dadde1;
   border-radius: 50px;
 }
+
+.active {
+  color: black;
+  cursor: default;
+}
+
+.active:hover {
+  text-decoration: none;
+}
+
 .temp-description {
   margin-top: 5px;
   line-height: 32px;

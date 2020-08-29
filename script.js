@@ -50,7 +50,9 @@ function displayWeatherConditions(response) {
     response.data.main.temp
   );
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = response.data.wind.speed;
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
   document.querySelector("#date").innerHTML = formatDate(
@@ -65,6 +67,8 @@ function displayWeatherConditions(response) {
   document
     .querySelector("#icon")
     .setAttribute("alt", response.data.weather[0].main);
+
+  celsiusTemperature = response.data.main.temp;
 }
 
 function searchLocation(position) {
@@ -79,14 +83,11 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayWeatherConditions);
 }
 
-function displayBackgroundImage(natural) {
-  document.querySelector("#body-background");
-}
-
-function searchImageLocation() {
+function searchPlanetImage() {
   let apiKey = "BHQKLBephGK3GnkK56FsQZ6TpKgMdTtrYCw0wUVq";
-  let apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
+  let apiUrl = `https://api.nasa.gov/EPIC/archive/natural/${date}/png/epic_1b_20190530011359.png?api_key=${apiKey}`;
   console.log(apiUrl);
+  let date = formatCurrentDate();
   axios.get(apiUrl).then(displayBackgroundImage);
 }
 
@@ -104,18 +105,21 @@ function getLocation(event) {
 function convertToFahrenheit(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  let temperature = temperatureElement.innerHTML;
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 function convertToCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  let temperature = temperatureElement.innerHTML;
-  temperature = Number(temperature);
-  temperatureElement.innerHTML = Math.round(((temperature - 32) * 5) / 9);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
+
+let celsiusTemperature = null;
 
 let searchNewCity = document.querySelector("#search-city");
 searchNewCity.addEventListener("submit", handleSubmit);
@@ -130,5 +134,3 @@ searchCity("London");
 
 let currentLocationButton = document.querySelector("#location-button");
 currentLocationButton.addEventListener("click", getLocation);
-
-let bodyBackgroundImage = document.querySelector("#body-background");
