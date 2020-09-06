@@ -3,18 +3,6 @@ function formatDate(timestamp) {
   let currentDate = date.getDate();
   let year = date.getFullYear();
 
-  let dayIndex = date.getDay();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let day = days[dayIndex];
-
   let monthIndex = date.getMonth();
   let months = [
     "January",
@@ -32,7 +20,9 @@ function formatDate(timestamp) {
   ];
   let month = months[monthIndex];
 
-  return `${day} ${currentDate} ${month} ${year} | ${formatHours(timestamp)}`;
+  return `${formatDay(
+    timestamp
+  )} ${currentDate} ${month} ${year} | ${formatHours(timestamp)}`;
 }
 
 function displayWeatherConditions(response) {
@@ -43,6 +33,12 @@ function displayWeatherConditions(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(
     response.data.wind.speed
+  );
+  document.querySelector("#sunrise").innerHTML = formatHours(
+    response.data.sys.sunrise * 1000
+  );
+  document.querySelector("#sunset").innerHTML = formatHours(
+    response.data.sys.sunset * 1000
   );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
@@ -66,6 +62,22 @@ function searchLocation(position) {
   let apiKey = "7078ca8e45a8e54ad9b485826d119586";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherConditions);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp);
+  let dayIndex = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[dayIndex];
+  return `${day}`;
 }
 
 function formatHours(timestamp) {
@@ -94,12 +106,44 @@ function displayForecast(response) {
                 <img src="http://openweathermap.org/img/wn/${
                   forecast.weather[0].icon
                 }@2x.png" alt="" class="hourly-icon"/>
-                <div><strong>${Math.round(
+                <div>
+                <span class="temp-max">
+                ${Math.round(
                   forecast.main.temp_max
-                )}°</strong> ${Math.round(forecast.main.temp_min)}</div>
+                )}</span>° <span class="temp-min">${Math.round(
+      forecast.main.temp_min
+    )}</span>°
+                </div>
               </div>
             </div>
   `;
+  }
+}
+
+function displayDailyForecast(response) {
+  let dailyForecastElement = document.querySelector("#dailyForecast");
+  dailyForecastElement.innerHTML = null;
+  let forecast = null;
+
+  for (let index = 8; index < 14; index++) {
+    forecast = response.data.list[index];
+    dailyForecastElement.innerHTML += `<div class="col-sm-2">
+    <div class="card text-center">
+      <div class="card-body">
+        <p class="card-text">${formatDay(forecast.dt * 1000)}</p>
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecast.weather[8].icon
+          }@2x.png"
+          alt=""
+          class="weekly-temp-icon"
+        />
+        <p class="card-text"><strong>${Math.round(
+          forecast.main.temp_max
+        )}°</strong> ${Math.round(forecast.main.temp_min)}°</p>
+      </div>
+    </div>
+  </div>`;
   }
 }
 
@@ -138,6 +182,17 @@ function convertToFahrenheit(event) {
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  let maxElement = document.querySelectorAll(".temp-max");
+  let minElement = document.querySelectorAll(".temp-min");
+  maxElement.forEach(function (max) {
+    let currentTemp = max.innerHTML;
+    max.innerHTML = `${Math.round((currentTemp * 9) / 5 + 32)}`;
+  });
+  minElement.forEach(function (min) {
+    let currentTemp = min.innerHTML;
+    min.innerHTML = `${Math.round((currentTemp * 9) / 5 + 32)}`;
+  });
 }
 
 function convertToCelsius(event) {
@@ -146,6 +201,17 @@ function convertToCelsius(event) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+  let maxElement = document.querySelectorAll(".temp-max");
+  let minElement = document.querySelectorAll(".temp-min");
+  maxElement.forEach(function (max) {
+    let currentTemp = max.innerHTML;
+    max.innerHTML = `${Math.round(((currentTemp - 32) * 5) / 9)}`;
+  });
+  minElement.forEach(function (min) {
+    let currentTemp = min.innerHTML;
+    min.innerHTML = `${Math.round(((currentTemp - 32) * 5) / 9)}`;
+  });
 }
 
 let celsiusTemperature = null;

@@ -25,7 +25,7 @@
   <body>
     <div class="container">
       <div class="container-body">
-        <div class="weather-app-body" id="body-background" src="#">
+        <div class="weather-app-body">
           <div class="row">
             <div class="col-6">
               <form id="search-city">
@@ -86,7 +86,7 @@
                     alt="sunrise symbol"
                     class="sunrise-icon"
                   />
-                  <span class="sunrise-sunset">05:00</span>
+                  <span class="sunrise-sunset" id="sunrise"></span>
                 </li>
                 <li class="temp-description">
                   <img
@@ -94,7 +94,7 @@
                     alt="sunset symbol"
                     class="sunset-icon"
                   />
-                  <span class="sunrise-sunset">21:04</span>
+                  <span class="sunrise-sunset" id="sunset"></span>
                 </li>
               </ul>
             </div>
@@ -104,86 +104,7 @@
             <div class="row" id="forecast"></div>
           </div>
           <div class="weekly-temp">
-            <div class="row">
-              <div class="col-sm-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">Monday</p>
-                    <img
-                      src="images/sunny.png"
-                      alt="sunny icon"
-                      class="weekly-temp-icon"
-                    />
-                    <p class="card-text">22° 15°</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">Tuesday</p>
-                    <img
-                      src="images/cloudsunwind.png"
-                      alt="cloudy sun rain"
-                      class="weekly-temp-icon"
-                    />
-                    <p class="card-text">18° 11°</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">Wednesday</p>
-                    <img
-                      src="images/suncloud.png"
-                      alt="cloud sun"
-                      class="weekly-temp-icon"
-                    />
-                    <p class="card-text">17° 9°</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">Thursday</p>
-                    <img
-                      src="images/cloudrain.png"
-                      alt="cloudy rain"
-                      class="weekly-temp-icon"
-                    />
-                    <p class="card-text">18° 12°</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">Friday</p>
-                    <img
-                      src="images/sunny.png"
-                      alt="sunny weather"
-                      class="weekly-temp-icon"
-                    />
-                    <p class="card-text">23° 16°</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <p class="card-text">Saturday</p>
-                    <img
-                      src="images/suncloud.png"
-                      alt="cloudy sun"
-                      class="weekly-temp-icon"
-                    />
-                    <p class="card-text">21° 13°</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="row" id="dailyForecast"></div>
           </div>
         </div>
         <br />
@@ -191,7 +112,7 @@
           <a href="https://github.com/FranMahoney/weather-planet-app"
             >Open-source code</a
           >
-          <span> by Francesca Mahoney</span>
+          <span class="name">by Francesca Mahoney</span>
         </div>
       </div>
     </div>

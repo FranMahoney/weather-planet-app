@@ -1,5 +1,6 @@
 body {
   font-family: "Ubuntu", sans-serif;
+  color: #f9f8f7;
 }
 h2 {
   font-size: 35px;
@@ -22,6 +23,9 @@ li {
 .temperature {
   font-size: 85px;
 }
+.name {
+  color: black;
+}
 .main-icon {
   width: 160px;
   margin: -25px;
@@ -41,6 +45,9 @@ li {
 .card-text {
   font-size: 11px;
   margin: 2px;
+}
+.col-2 {
+  padding: 0px 10px;
 }
 .col-sm-2 {
   padding: 0px 5px;
@@ -64,6 +71,8 @@ li {
   padding: 30px;
 }
 .weather-app-body {
+  background-image: url("images/Earthwallpaper.jpg");
+  background-size: cover;
   display: block;
   margin: 0 auto;
   width: 500px;
@@ -72,8 +81,12 @@ li {
   border-radius: 50px;
 }
 
+.earth {
+  width: 500px;
+}
+
 .active {
-  color: black;
+  color: white;
   cursor: default;
 }
 
@@ -100,5 +113,5 @@ li {
 
 .hourly-icon {
   width: 50px;
-  margin: 0 0 2px 0;
+  margin: 0px auto;
 }
