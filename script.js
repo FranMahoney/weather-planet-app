@@ -156,14 +156,6 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayForecast);
 }
 
-function searchPlanetImage() {
-  let apiKey = "BHQKLBephGK3GnkK56FsQZ6TpKgMdTtrYCw0wUVq";
-  let apiUrl = `https://api.nasa.gov/EPIC/archive/natural/${date}/png/epic_1b_20190530011359.png?api_key=${apiKey}`;
-  console.log(apiUrl);
-  let date = formatCurrentDate();
-  axios.get(apiUrl).then(displayBackgroundImage);
-}
-
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector("#search-text-input").value;
