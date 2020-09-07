@@ -112,11 +112,8 @@ function displayForecast(response) {
                   forecast.main.temp_max
                 )}</span>° <span class="temp-min">${Math.round(
       forecast.main.temp_min
-    )}</span>°
-                </div>
-              </div>
-            </div>
-  `;
+    )}</span>°</div>
+              </div>`;
   }
   displayDailyForecast(response);
 }

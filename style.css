@@ -26,6 +26,7 @@ li {
 }
 .name {
   color: black;
+  font-size: 12px;
 }
 .main-icon {
   width: 160px;
@@ -60,15 +61,16 @@ li {
 .source-code-link {
   display: block;
   margin: 0px;
+  font-size: 12px;
+  padding: 0 0 0 30px;
 }
 .weather-app-wrapper {
   max-width: 600px;
   margin: 60px;
 }
 .container-body {
-  display: block;
   margin: 0 auto;
-  width: 500px;
+  width: 600px;
   padding: 30px;
 }
 .weather-app-body {
@@ -108,9 +110,11 @@ li {
 .sunset-icon {
   width: 50px;
 }
+
 .temp-min {
   color: #c1bfbf;
 }
+
 .hourly-temp {
   margin-top: 7px;
 }
