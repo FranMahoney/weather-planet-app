@@ -43,6 +43,10 @@ li {
 }
 .card-body {
   padding: 2px;
+  background-color: transparent;
+}
+.card {
+  background-color: transparent;
 }
 .card-text {
   font-size: 11px;
