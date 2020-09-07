@@ -7,6 +7,7 @@ h2 {
 }
 h3 {
   font-size: 16px;
+  margin: 0 0 0 2px;
 }
 h1 {
   font-size: 85px;
@@ -28,7 +29,7 @@ li {
 }
 .main-icon {
   width: 160px;
-  margin: -25px;
+  margin: -42px -14px;
   padding: 0px;
 }
 .container {
@@ -99,9 +100,16 @@ li {
   line-height: 32px;
 }
 
+.sunrise-sunset {
+  padding: 0 0 0 5px;
+}
+
 .sunrise-icon,
 .sunset-icon {
-  width: 60px;
+  width: 50px;
+}
+.temp-min {
+  color: #c1bfbf;
 }
 .hourly-temp {
   margin-top: 7px;
