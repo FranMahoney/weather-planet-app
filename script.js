@@ -128,7 +128,7 @@ function displayDailyForecast(response) {
     dailyForecastElement.innerHTML += `<div class="col-sm-2">
     <div class="card text-center">
       <div class="card-body">
-        <p class="card-text">${formatDay(forecast.dt * 1000)}</p>
+        <h3 class="card-text day">${formatDay(forecast.dt * 1000)}</h3>
         <img
           src="http://openweathermap.org/img/wn/${
             forecast.weather[0].icon
@@ -136,9 +136,11 @@ function displayDailyForecast(response) {
           alt=""
           class="weekly-temp-icon"
         />
-        <p class="card-text"><strong>${Math.round(
+        <h3 class="card-text">${Math.round(
           forecast.main.temp_max
-        )}°</strong> ${Math.round(forecast.main.temp_min)}°</p>
+        )}° <span class="temp-min">${Math.round(
+      forecast.main.temp_min
+    )}°</span></h3>
       </div>
     </div>
   </div>`;

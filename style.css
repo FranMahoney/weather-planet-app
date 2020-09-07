@@ -49,8 +49,11 @@ li {
   background-color: transparent;
 }
 .card-text {
-  font-size: 11px;
+  font-size: 16px;
   margin: 2px;
+}
+.day {
+  font-size: 11px;
 }
 .col-2 {
   padding: 0px 10px;
