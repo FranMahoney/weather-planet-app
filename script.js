@@ -118,6 +118,7 @@ function displayForecast(response) {
             </div>
   `;
   }
+  displayDailyForecast(response);
 }
 
 function displayDailyForecast(response) {
