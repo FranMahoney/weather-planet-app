@@ -131,7 +131,7 @@ function displayDailyForecast(response) {
         <p class="card-text">${formatDay(forecast.dt * 1000)}</p>
         <img
           src="http://openweathermap.org/img/wn/${
-            forecast.weather[8].icon
+            forecast.weather[0].icon
           }@2x.png"
           alt=""
           class="weekly-temp-icon"
