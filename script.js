@@ -65,9 +65,6 @@ function searchLocation(position) {
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
-
-  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayDailyForecast);
 }
 
 function formatDay(timestamp) {
@@ -121,7 +118,6 @@ function displayForecast(response) {
     )}</span>°</div>
               </div>`;
   }
-  displayDailyForecast(response);
 }
 
 function displayDailyForecast(response) {
@@ -131,10 +127,13 @@ function displayDailyForecast(response) {
 
   for (let index = 8; index < 14; index++) {
     forecast = response.data.list[index];
+    let date = new Date(forecast.dt * 1000);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    let dayOfTheWeek = days[date.getDay()];
     dailyForecastElement.innerHTML += `<div class="col-sm-2">
     <div class="card text-center">
       <div class="card-body">
-        <h3 class="card-text day">${formatDay(forecast.dt * 1000)}</h3>
+        <h3 class="card-text day">${dayOfTheWeek}</h3>
         <img
           src="http://openweathermap.org/img/wn/${
             forecast.weather[0].icon
@@ -151,12 +150,16 @@ function displayDailyForecast(response) {
     </div>
   </div>`;
   }
+  displayForecast(response);
 }
 
 function searchCity(city) {
   let apiKey = "7078ca8e45a8e54ad9b485826d119586";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayWeatherConditions);
+
+  apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function handleSubmit(event) {
