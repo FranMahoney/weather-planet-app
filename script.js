@@ -64,7 +64,7 @@ function searchLocation(position) {
   axios.get(apiUrl).then(displayWeatherConditions);
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayDailyForecast);
 }
 
 function formatDay(timestamp) {
@@ -125,12 +125,11 @@ function displayDailyForecast(response) {
   dailyForecastElement.innerHTML = null;
   let forecast = null;
 
-  for (let index = 8; index < 14; index++) {
-    forecast = response.data.list[index];
-    let date = new Date(forecast.dt * 1000);
-    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    let dayOfTheWeek = days[date.getDay()];
-    dailyForecastElement.innerHTML += `<div class="col-sm-2">
+  forecast = response.data.list[9];
+  let date = new Date(forecast.dt * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let dayOfTheWeek = days[date.getDay()];
+  dailyForecastElement.innerHTML += `<div class="col-sm-2">
     <div class="card text-center">
       <div class="card-body">
         <h3 class="card-text day">${dayOfTheWeek}</h3>
@@ -141,15 +140,15 @@ function displayDailyForecast(response) {
           alt=""
           class="weekly-temp-icon"
         />
-        <h3 class="card-text">${Math.round(
+        <h3 class="card-text"> <span class="temp-max">${Math.round(
           forecast.main.temp_max
-        )}° <span class="temp-min">${Math.round(
-      forecast.main.temp_min
-    )}°</span></h3>
+        )}</span>° <span class="temp-min">${Math.round(
+    forecast.main.temp_min
+  )}</span>°</h3>
       </div>
     </div>
   </div>`;
-  }
+
   displayForecast(response);
 }
 
@@ -159,7 +158,7 @@ function searchCity(city) {
   axios.get(apiUrl).then(displayWeatherConditions);
 
   apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
+  axios.get(apiUrl).then(displayDailyForecast);
 }
 
 function handleSubmit(event) {
@@ -191,6 +190,9 @@ function convertToFahrenheit(event) {
     let currentTemp = min.innerHTML;
     min.innerHTML = `${Math.round((currentTemp * 9) / 5 + 32)}`;
   });
+
+  fahrenheitLink.removeEventListener("click", convertToFahrenheit);
+  celsiusLink.addEventListener("click", convertToCelsius);
 }
 
 function convertToCelsius(event) {
@@ -210,6 +212,9 @@ function convertToCelsius(event) {
     let currentTemp = min.innerHTML;
     min.innerHTML = `${Math.round(((currentTemp - 32) * 5) / 9)}`;
   });
+
+  fahrenheitLink.addEventListener("click", convertToFahrenheit);
+  celsiusLink.removeEventListener("click", convertToCelsius);
 }
 
 let celsiusTemperature = null;

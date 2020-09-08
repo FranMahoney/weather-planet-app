@@ -32,6 +32,8 @@ li {
   width: 160px;
   margin: -42px -14px;
   padding: 0px;
+  position: relative;
+  z-index: 1;
 }
 .container {
   width: 100%;
@@ -133,4 +135,8 @@ li {
 .hourly-icon {
   width: 50px;
   margin: 0px auto;
+}
+.temperature-wrapper {
+  position: relative;
+  z-index: 10;
 }
