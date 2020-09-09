@@ -84,6 +84,7 @@ li {
 }
 .weather-app-body {
   background-image: url("images/Earthwallpaper.jpg");
+  opacity: 0.9;
   background-size: cover;
   display: block;
   margin: 0 auto;
@@ -136,6 +137,7 @@ li {
   width: 50px;
   margin: 0px auto;
 }
+
 .temperature-wrapper {
   position: relative;
   z-index: 10;
