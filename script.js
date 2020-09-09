@@ -138,10 +138,9 @@ function displayDailyForecast(response) {
       let date = new Date(forecast.dt * 1000);
       let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       let dayOfTheWeek = days[date.getDay()];
-      dailyForecastElement.innerHTML += `<div class="col-sm-2">
-    <div class="card text-center">
-      <div class="card-body">
-        <h3 class="card-text day">${dayOfTheWeek}</h3>
+      dailyForecastElement.innerHTML += `
+    <div class="col-2">
+        <h3 class="day">${dayOfTheWeek}</h3>
         <img
           src="http://openweathermap.org/img/wn/${
             forecast.weather[0].icon
@@ -149,14 +148,12 @@ function displayDailyForecast(response) {
           alt=""
           class="weekly-temp-icon"
         />
-        <h3 class="card-text"> <span class="temp-max">${Math.round(
+        <h3> <span class="temp-max">${Math.round(
           forecast.main.temp_max
         )}</span>° <span class="temp-min">${Math.round(
         forecast.main.temp_min
       )}</span>°</h3>
-      </div>
-    </div>
-  </div>`;
+      </div>`;
     }
   }
   displayForecast(response);

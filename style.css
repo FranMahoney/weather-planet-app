@@ -7,7 +7,7 @@ h2 {
 }
 h3 {
   font-size: 16px;
-  margin: 0 0 0 2px;
+  margin: 0 0 0 5px;
 }
 h1 {
   font-size: 85px;
@@ -20,6 +20,9 @@ ul {
 }
 li {
   list-style: none;
+}
+.day {
+  margin: 0 0 0 10px;
 }
 .temperature {
   font-size: 85px;
@@ -53,9 +56,6 @@ li {
 .card-text {
   font-size: 16px;
   margin: 2px;
-}
-.day {
-  font-size: 16px;
 }
 .col-2 {
   padding: 0px 10px;
