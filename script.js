@@ -125,11 +125,20 @@ function displayDailyForecast(response) {
   dailyForecastElement.innerHTML = null;
   let forecast = null;
 
-  forecast = response.data.list[9];
-  let date = new Date(forecast.dt * 1000);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let dayOfTheWeek = days[date.getDay()];
-  dailyForecastElement.innerHTML += `<div class="col-sm-2">
+  for (let index = 0; index < response.data.list.length; index++) {
+    forecast = response.data.list[index];
+    if (
+      index === 1 ||
+      index === 9 ||
+      index === 17 ||
+      index === 25 ||
+      index === 33 ||
+      index === 39
+    ) {
+      let date = new Date(forecast.dt * 1000);
+      let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      let dayOfTheWeek = days[date.getDay()];
+      dailyForecastElement.innerHTML += `<div class="col-sm-2">
     <div class="card text-center">
       <div class="card-body">
         <h3 class="card-text day">${dayOfTheWeek}</h3>
@@ -143,12 +152,13 @@ function displayDailyForecast(response) {
         <h3 class="card-text"> <span class="temp-max">${Math.round(
           forecast.main.temp_max
         )}</span>° <span class="temp-min">${Math.round(
-    forecast.main.temp_min
-  )}</span>°</h3>
+        forecast.main.temp_min
+      )}</span>°</h3>
       </div>
     </div>
   </div>`;
-
+    }
+  }
   displayForecast(response);
 }
 
